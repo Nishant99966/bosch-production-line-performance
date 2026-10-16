@@ -16,6 +16,8 @@ def main():
                 continue
             print(f"\n{filename} statement {i}")
             result = connection.execute(statement)
+            if result is None or result.description is None:
+                continue
             columns = [item[0] for item in result.description]
             print(" | ".join(columns))
             for row in result.fetchall():
