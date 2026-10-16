@@ -1,0 +1,29 @@
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  artifacts_dir: artifacts
+io:
+  chunk_size: 50000
+features:
+  numeric_top_k: 220
+  include_categorical: true
+  categorical_top_k: 80
+  min_numeric_coverage: 0.002
+  min_categorical_coverage: 0.002
+validation:
+  strategy: chronological
+  validation_fraction: 0.20
+  random_state: 42
+model:
+  n_estimators: 1600
+  learning_rate: 0.025
+  num_leaves: 31
+  max_depth: -1
+  min_child_samples: 50
+  subsample: 0.85
+  colsample_bytree: 0.75
+  reg_alpha: 0.25
+  reg_lambda: 1.0
+  random_state: 42
+  n_jobs: -1
+  early_stopping_rounds: 100

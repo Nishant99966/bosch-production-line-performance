@@ -4,6 +4,9 @@ data/processed/*
 !data/processed/.gitkeep
 artifacts/*
 !artifacts/.gitkeep
+data/raw_synthetic/
+data/processed_synthetic/
+artifacts_synthetic/
 __pycache__/
 .pytest_cache/
 *.pyc
