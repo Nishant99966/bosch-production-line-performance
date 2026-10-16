@@ -15,7 +15,11 @@ def main():
             if not statement.strip():
                 continue
             print(f"\n{filename} statement {i}")
-            print(connection.execute(statement).fetchdf().to_string(index=False))
+            result = connection.execute(statement)
+            columns = [item[0] for item in result.description]
+            print(" | ".join(columns))
+            for row in result.fetchall():
+                print(" | ".join(str(value) for value in row))
     connection.close()
 
 if __name__ == "__main__":
