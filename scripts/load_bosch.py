@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 import duckdb
 
-PATTERN = re.compile(r"^(L\\d+)_(S\\d+)_")
+PATTERN = re.compile(r"^(L\d+)_(S\d+)_")
 SOURCES = (("numeric", "train_numeric.csv", "numeric_measurements", "measured_value"),
            ("date", "train_date.csv", "date_measurements", "timestamp_offset"),
            ("categorical", "train_categorical.csv", "categorical_measurements", "category_value"))
