@@ -77,3 +77,13 @@ The loader checks header columns, aligns the three files on `Id`, rejects duplic
 - `machine-learning` branch — original LightGBM pipeline
 
 **Status:** SQL foundation implemented, but no end-to-end execution on the actual Bosch dataset is claimed. Direct local execution is needed because the connected Drive download rejected the compressed numeric archive.
+
+## Final SQL portfolio report
+
+After importing training records and running the feature inventory, run:
+
+```powershell
+python scripts/run_final_report.py --database data/bosch.duckdb
+```
+
+This executes `sql/04_final_quality_report.sql`, creating CSV outputs in `data/processed/final_sql_report/`. The documented real-data results and scope are in [FINAL_SQL_PROJECT_REPORT.md](docs/FINAL_SQL_PROJECT_REPORT.md). The final report runner must be downloaded or pulled into local copies created from earlier ZIP snapshots.
