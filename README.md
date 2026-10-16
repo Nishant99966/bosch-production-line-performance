@@ -20,7 +20,7 @@ A reproducible, memory-conscious Python machine-learning pipeline for the [Kaggl
 
 ## Repository layout
 
-\`\`\`text
+```text
 .github/workflows/tests.yml       Automated CI
 configs.yaml                      Full dataset configuration
 configs.synthetic.yaml            Local synthetic smoke-test configuration
@@ -37,29 +37,29 @@ src/bosch_pipeline/model.py       LightGBM fitting
 src/bosch_pipeline/train.py       Model/report/submission pipeline
 tests/                            Unit and end-to-end tests
 PROJECT_REPORT.md                 Method, assumptions and limitations
-\`\`\`
+```
 
 ## Setup
 
 Requires Python 3.10+ (Python 3.11 recommended). Use a virtual environment.
 
-\`\`\`bash
+```bash
 python -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
 python -m pip install --upgrade pip
 pip install -e . pytest kaggle
 pytest -q
-\`\`\`
+```
 
 ## Run the synthetic end-to-end test
 
-\`\`\`bash
+```bash
 python scripts/make_synthetic_data.py
 python -m bosch_pipeline.prepare --config configs.synthetic.yaml
 python -m bosch_pipeline.train --config configs.synthetic.yaml
-\`\`\`
+```
 
-The resulting synthetic-only outputs are in \`artifacts_synthetic/\`. This is a functional smoke test, **not evidence of prediction quality on Bosch**.
+The resulting synthetic-only outputs are in `artifacts_synthetic/`. This is a functional smoke test, **not evidence of prediction quality on Bosch**.
 
 ## Full Kaggle competition run
 
@@ -67,35 +67,35 @@ The resulting synthetic-only outputs are in \`artifacts_synthetic/\`. This is a 
 2. Configure the [Kaggle CLI](https://github.com/Kaggle/kaggle-api) for your account.
 3. Download/extract the CSV files:
 
-\`\`\`bash
+```bash
 bash scripts/download_data.sh
-\`\`\`
+```
 
-Confirm \`data/raw\` includes:
-\`\`\`text
+Confirm `data/raw` includes:
+```text
 train_numeric.csv
 test_numeric.csv
 train_date.csv
 test_date.csv
 train_categorical.csv
 test_categorical.csv
-\`\`\`
+```
 
 Then:
 
-\`\`\`bash
+```bash
 python -m bosch_pipeline.prepare --config configs.yaml
 python -m bosch_pipeline.train --config configs.yaml
-\`\`\`
+```
 
 Outputs:
-- \`artifacts/model.txt\`: fitted LightGBM model
-- \`artifacts/metrics.json\`: holdout MCC, ROC AUC, average precision and threshold
-- \`artifacts/feature_importance.csv\`: model feature importance
-- \`artifacts/submission.csv\`: \`Id,Response\` competition predictions
-- \`data/processed/feature_metadata.json\`: selected feature metadata
+- `artifacts/model.txt`: fitted LightGBM model
+- `artifacts/metrics.json`: holdout MCC, ROC AUC, average precision and threshold
+- `artifacts/feature_importance.csv`: model feature importance
+- `artifacts/submission.csv`: `Id,Response` competition predictions
+- `data/processed/feature_metadata.json`: selected feature metadata
 
-**Do not commit Kaggle data, trained binaries or credentials.** The \`.gitignore\` excludes local input/output directories.
+**Do not commit Kaggle data, trained binaries or credentials.** The `.gitignore` excludes local input/output directories.
 
 ## Evaluation and leakage considerations
 
