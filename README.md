@@ -36,17 +36,18 @@ To prevent multi-billion-row accidental imports, long-form measurement ingestion
 
 ## Getting started
 
-Requires Python 3.10+ and actual Kaggle training CSVs extracted to `data/raw/`.
+Requires Python 3.10+ and the actual Bosch Kaggle archives downloaded locally. Archives are already stored in the user's Google Drive, but the connector currently blocks transfer of the 283 MB numeric archive (256 MiB single-file limit), so the complete real-data run must be performed where the archives are directly available.
 
 ```bash
 pip install -r requirements.txt
+python scripts/extract_archives.py --archive-dir /path/to/downloaded/zips
 python scripts/load_bosch.py --data-dir data/raw --database data/bosch.duckdb --max-features 20
 python scripts/run_sql.py --database data/bosch.duckdb
 ```
 
 On Windows PowerShell, use the same `python` commands. `--max-features 0` imports *all* measurement features: this may require significant disk and time. Use `--rows 10000` to dry-run a small subset of actual records without claiming full-data results.
 
-The loader checks header columns, aligns the three files on `Id`, rejects duplicate part IDs and inconsistent labels, stores observed (non-null) measurements and records the selected-feature catalogue. It processes chunks; the SQL results are printed to your terminal.
+The loader checks header columns, aligns the three files on `Id`, rejects duplicate part IDs and inconsistent labels, stores observed (non-null) measurements and records the selected-feature catalogue. It stages one source at a time and selects the configured feature subset; full-row sources are materialized temporarily, so adequate temporary disk and RAM are required. The SQL results are printed to your terminal.
 
 ## Questions answered by SQL
 
@@ -75,4 +76,4 @@ The loader checks header columns, aligns the three files on `Id`, rejects duplic
 - `docs/DATA_DICTIONARY.md` — dataset semantics and assumptions
 - `machine-learning` branch — original LightGBM pipeline
 
-**Status:** SQL foundation implemented. Actual data load and empirical validation pending access to full Bosch files.
+**Status:** SQL foundation implemented, but no end-to-end execution on the actual Bosch dataset is claimed. Direct local execution is needed because the connected Drive download rejected the compressed numeric archive.
