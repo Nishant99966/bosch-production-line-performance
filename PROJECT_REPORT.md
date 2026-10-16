@@ -18,7 +18,7 @@ The challenge separates raw fields into numeric sensor measurements, categorical
 6. **Categorical engineering:** select frequently observed categories; factorize and compute frequency encodings on unlabeled union.
 7. **Train/validation:** chronological holdout by default, LightGBM binary classification with class imbalance weighting and early stopping.
 8. **Threshold selection:** maximize holdout MCC using a probability threshold search.
-9. **Final fit and prediction:** train a final classifier on all labeled samples with the chosen iteration count; generate \`Id,Response\` CSV and feature-importance report.
+9. **Final fit and prediction:** train a final classifier on all labeled samples with the chosen iteration count; generate `Id,Response` CSV and feature-importance report.
 
 ## Validation and scientific limitations
 
@@ -40,6 +40,6 @@ The challenge separates raw fields into numeric sensor measurements, categorical
 
 ## Reproduction
 
-See README.md for environment setup, authenticated Kaggle download, \`prepare\`, \`train\`, and synthetic smoke-test commands.
+See README.md for environment setup, authenticated Kaggle download, `prepare`, `train`, and synthetic smoke-test commands.
 
 **Reproducibility statement:** Implementation is available; reported benchmark results must be collected after a real full-data run.
