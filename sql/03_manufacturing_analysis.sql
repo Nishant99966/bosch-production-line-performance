@@ -1,4 +1,4 @@
--- Quality outcome only for labelled training parts; no target leakage from test.
+-- Quality outcome only for labelled training parts, no target leakage from test.
 SELECT response, COUNT(*) AS parts,
  ROUND(100.0*COUNT(*) / SUM(COUNT(*)) OVER (),2) AS share_pct
 FROM parts WHERE dataset_split='train' AND response IS NOT NULL
